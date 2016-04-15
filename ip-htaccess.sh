@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 #--------------------------------------------------------------------------
 # Liam Victor Delahunty
 # liamvictor@gmail.com
@@ -8,6 +8,7 @@
 # Replacing the old entry for "# Liam"
 #--------------------------------------------------------------------------
 file=/home/blader/public_html/secure/admin/.htaccess
+token="# Liam"
 today=$(date  +%Y-%m-%d)
 myip="${SSH_CLIENT%% *}" # parameter substitution
 clear
@@ -15,8 +16,8 @@ echo ${file}
 echo ""
 cat ${file}
 echo ""
-allow=$(echo "allow from" ${myip} " # Liam " ${today})
+allow=$(echo "allow from" ${myip} ${token} ${today})
 echo ${allow}
 echo ""
-sed -i "/# Liam/s/.*/$allow/1" ${file}
+sed -i "/$token/s/.*/$allow/1" ${file}
 cat ${file}
